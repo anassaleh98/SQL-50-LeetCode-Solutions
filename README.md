@@ -4,7 +4,7 @@ This repository contains my solutions to the **SQL 50** study plan on LeetCode. 
 
 ## Table of Contents
 
-1. [Selects](#selects)
+1. [Select](#selects)
 2. [Basic Joins](#basic-joins)
 3. [Basic Aggregate Functions](#basic-aggregate-functions)
 4. [Sorting and Grouping](#sorting-and-grouping)
