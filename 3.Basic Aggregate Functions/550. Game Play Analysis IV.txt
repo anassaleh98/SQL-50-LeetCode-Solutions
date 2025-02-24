@@ -1,0 +1,9 @@
+SELECT ROUND(count(DISTINCT a.player_id) / count(DISTINCT b.player_id), 2) AS fraction
+FROM Activity b
+LEFT JOIN Activity a 
+ON a.player_id = b.player_id 
+AND DATEDIFF(a.event_date, b.event_date) = 1
+where b.event_date = (select min(event_date) from Activity where  player_id = b.player_id)
+
+# b >> contains each player's first login date
+# a >> checks if there is a login one day after
