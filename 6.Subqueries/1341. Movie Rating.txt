@@ -1,0 +1,27 @@
+SELECT * FROM (
+select name as results
+from(
+    select u.name, count(mr.user_id) as highest 
+    from MovieRating mr join Users u
+    on mr.user_id = u.user_id
+    group by u.user_id , u.name
+) t
+order by highest desc , name asc
+limit 1
+) AS top_movie
+
+UNION ALL
+
+SELECT * FROM (
+select title as results
+from(
+    select m.title , avg(mr.rating) as avg_rating
+    from MovieRating mr join Movies m 
+    on mr.movie_id = m.movie_id
+    where mr.created_at between '2020-02-01' and '2020-02-29'
+    group by m.movie_id, m.title
+) t
+order by avg_rating desc , title asc
+limit 1
+
+) AS top_movie;

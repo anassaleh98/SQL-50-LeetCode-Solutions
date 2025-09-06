@@ -1,0 +1,11 @@
+with t as(
+    select * , 
+    count(tiv_2015) over(partition by tiv_2015) as tiv_2015_count, 
+    count(*) over(partition by lat, lon) as count_citys
+    from Insurance
+)
+
+select round(sum(tiv_2016) , 2) as tiv_2016
+from t
+where tiv_2015_count > 1
+  and count_citys = 1

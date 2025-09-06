@@ -1,0 +1,16 @@
+with ids as(
+    select requester_id AS id 
+    FROM RequestAccepted
+    union all
+    select accepter_id 
+    from RequestAccepted
+),
+friend_counts as(
+    select id, count(*) as num 
+    from ids
+    group by id 
+)
+
+select id , num 
+from friend_counts
+where num = ( select MAX(num) from friend_counts);
